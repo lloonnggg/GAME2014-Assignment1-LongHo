@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     float Y;
     public float moveSpeed = 5f;
 
+    [SerializeField] PlayerBullet playerBullet;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,5 +24,10 @@ public class Player : MonoBehaviour
         Y = Input.GetAxisRaw("Vertical") * moveSpeed * Time.deltaTime;
 
         transform.position += new Vector3(X, Y, 0);
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Instantiate(playerBullet, transform.position, Quaternion.identity);
+        }
     }
 }
