@@ -4,46 +4,23 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private Vector2 movement;
+    float X;
+    float Y;
     public float moveSpeed = 5f;
-    public Rigidbody2D rb;
 
     // Start is called before the first frame update
     void Start()
     {
-        // Get the Rigidbody2D component
-        rb = GetComponent<Rigidbody2D>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
         // Input handling for movement
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
-    }
+        X = Input.GetAxisRaw("Horizontal") * moveSpeed * Time.deltaTime;
+        Y = Input.GetAxisRaw("Vertical") * moveSpeed * Time.deltaTime;
 
-    private void FixedUpdate()
-    {
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
-    }
-
-    void PlayerMovement()
-    {
-        if(Input.GetKeyDown(KeyCode.W))
-        {
-        }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-
-        }
+        transform.position += new Vector3(X, Y, 0);
     }
 }
